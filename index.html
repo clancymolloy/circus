@@ -1,0 +1,79 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171138"><title>Circus of Color — Interactive</title><style>
+:root{color-scheme:dark;--pink:#ff55a7;--gold:#ffe45d;--aqua:#35e3dc}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 0,#39205e,#11102e 65%);color:#fff7d5;font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;display:grid;place-items:center;padding:24px}.experience{width:min(1100px,100%);text-align:center}.eyebrow{margin:0 0 8px;text-transform:uppercase;letter-spacing:.23em;font-weight:800;color:var(--aqua);font-size:.78rem}h1{font-family:Georgia,serif;font-size:clamp(2rem,5vw,3.5rem);margin:0 0 8px;text-shadow:0 0 22px #ff44ac}.hint{color:#ddd0f2;margin:0 0 18px}.stage{position:relative;border:2px solid #ffe45d;border-radius:24px;overflow:hidden;box-shadow:0 0 40px #f142a755,0 18px 55px #0008;background:#11102e}.stage svg{display:block;width:100%;height:auto}.stage svg use{transform-box:fill-box;transform-origin:center bottom;animation:bounce 1.6s ease-in-out infinite}.stage svg > g[transform]:nth-of-type(2n) use{animation-delay:-.5s}.stage svg > g[transform]:nth-of-type(3n) use{animation-delay:-1s}.stage.paused svg use{animation-play-state:paused}@keyframes bounce{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(2deg)}}.stage.lights-off svg ellipse[fill="url(#spot)"],.stage.lights-off svg > g[filter="url(#glow)"]{opacity:.04!important}.stage.lights-off{filter:saturate(.62) brightness(.78)}.confetti{position:absolute;inset:0;overflow:hidden;pointer-events:none}.piece{position:absolute;top:-16px;width:9px;height:15px;border-radius:2px;animation:fall var(--duration) linear forwards;left:var(--left);background:var(--color)}@keyframes fall{to{transform:translate3d(var(--drift),110vh,0) rotate(900deg);opacity:.3}}.controls{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:18px 0}.controls button{appearance:none;border:0;border-radius:999px;padding:13px 20px;background:var(--gold);color:#251443;font-weight:850;font-size:1rem;cursor:pointer;box-shadow:0 5px 0 #bb8f21;transition:transform .12s,filter .12s}.controls button:nth-child(2){background:var(--aqua);box-shadow:0 5px 0 #148c90}.controls button:nth-child(3){background:var(--pink);box-shadow:0 5px 0 #a52a68}.controls button:hover{filter:brightness(1.12);transform:translateY(-2px)}.controls button:active{transform:translateY(3px);box-shadow:none}.controls button:focus-visible{outline:3px solid white;outline-offset:4px}.status{min-height:1.5em;color:#e7d8ff;font-size:.9rem}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style></head><body><main class="experience"><p class="eyebrow">Step right up</p><h1>Circus of Color</h1><p class="hint">The ring is yours. Choose the show.</p><section class="stage" id="stage" aria-label="Interactive circus illustration">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+<title id="title">Circus of Color</title><desc id="desc">A jubilant night circus with a ring of clowns and performers beneath a glowing striped big top.</desc>
+<defs>
+ <radialGradient id="night"><stop stop-color="#492379"/><stop offset=".58" stop-color="#1c1748"/><stop offset="1" stop-color="#090d27"/></radialGradient>
+ <radialGradient id="spot"><stop stop-color="#fffbd0" stop-opacity=".72"/><stop offset="1" stop-color="#ffe247" stop-opacity="0"/></radialGradient>
+ <linearGradient id="floor" x2="0" y2="1"><stop stop-color="#ffef97"/><stop offset="1" stop-color="#ec846f"/></linearGradient>
+ <linearGradient id="tent" x2="0" y2="1"><stop stop-color="#ff62bd"/><stop offset="1" stop-color="#7137ba"/></linearGradient>
+ <pattern id="dots" width="42" height="42" patternUnits="userSpaceOnUse"><circle cx="5" cy="7" r="2" fill="#fff" opacity=".3"/><circle cx="28" cy="28" r="1.5" fill="#ffdc58" opacity=".45"/></pattern>
+ <filter id="glow"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <g id="performer">
+  <!-- legs and shoes -->
+  <path d="M-13 44L-17 68 0 70 3 46M5 45L13 67 28 62 18 39" fill="#ffe44f" stroke="#24163e" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M-20 66q-13 0-15 8 12 6 25 0M13 66q15-6 21 1-7 11-22 9" fill="#f4439e" stroke="#24163e" stroke-width="4"/>
+  <!-- arms -->
+  <path d="M-18 4Q-34-8-44-27M18 4Q35 2 46-15" fill="none" stroke="#ffc68a" stroke-width="10" stroke-linecap="round"/>
+  <path d="M-42-30l-8-9m8 9-13-1m13 1-7 10M45-17l9-8m-9 8 13 3m-13-3 1 11" fill="none" stroke="#ffc68a" stroke-width="5" stroke-linecap="round"/>
+  <!-- costume -->
+  <path d="M-14-7L-23 9l10 8-8 24q24 12 48 0L14 17l10-8L14-7Z" fill="#16d7d1" stroke="#24163e" stroke-width="4"/>
+  <path d="M-22 10l-10 18 12 5 8-15m26-9 14 17-11 8-10-13" fill="#ff547e" stroke="#24163e" stroke-width="4"/>
+  <path d="M0-6v52M-14 8l13 7 14-7" fill="none" stroke="#fff7a8" stroke-width="5"/>
+  <circle cx="0" cy="20" r="4" fill="#ffdc36"/><circle cx="1" cy="35" r="4" fill="#ffdc36"/>
+  <!-- head, hair, hat -->
+  <path d="M-17-29q-22-6-19-20 12-1 20 12m28 8q19-10 24-1-5 14-20 14" fill="#ff9d28"/>
+  <circle cy="-33" r="17" fill="#ffc68a" stroke="#24163e" stroke-width="4"/>
+  <path d="M-18-38q-1-19 18-21 18 3 18 21-17-8-36 0" fill="#5737aa" stroke="#24163e" stroke-width="3"/>
+  <path d="M-10-34h4m12 0h4" stroke="#24163e" stroke-width="4" stroke-linecap="round"/><circle cy="-29" r="4" fill="#f44995"/>
+  <path d="M-8-22q8 9 16 0" fill="none" stroke="#a32358" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="-10" cy="-30" r="5" fill="#fff"/><circle cx="10" cy="-30" r="5" fill="#fff"/>
+ </g>
+</defs>
+<!-- midnight backdrop -->
+<rect width="1200" height="900" fill="url(#night)"/><rect width="1200" height="900" fill="url(#dots)"/>
+<!-- marquee canopy -->
+<path d="M160 415Q180 138 600 92Q1020 138 1040 415Z" fill="url(#tent)" stroke="#ffd64a" stroke-width="7"/>
+<path d="M600 94L600 415M600 94L380 414M600 94L820 414M600 94L247 385M600 94L953 385" stroke="#ffd94e" stroke-width="7" opacity=".95"/>
+<path d="M165 355Q600 415 1035 355L1040 418Q600 474 160 418Z" fill="#f63886" stroke="#ffd94e" stroke-width="6"/>
+<path d="M177 375q45 35 90 1 45 34 90 3 45 34 90 4 45 34 90 5 45 35 90 5 45 34 90 4 45 33 90 2 45 34 90-2 45 34 90-7" fill="none" stroke="#ffe85e" stroke-width="12"/>
+<!-- glowing bulbs -->
+<g filter="url(#glow)" fill="#fff5a2"><circle cx="190" cy="399" r="8"/><circle cx="278" cy="411" r="8"/><circle cx="368" cy="420" r="8"/><circle cx="462" cy="426" r="8"/><circle cx="556" cy="429" r="8"/><circle cx="650" cy="429" r="8"/><circle cx="744" cy="426" r="8"/><circle cx="838" cy="420" r="8"/><circle cx="928" cy="411" r="8"/><circle cx="1010" cy="399" r="8"/><circle cx="600" cy="102" r="11"/></g>
+<!-- central pole and pennant -->
+<path d="M600 125V470" stroke="#ffeab2" stroke-width="8"/><path d="M603 125l75 24-75 24Z" fill="#23d9d0" stroke="#fff" stroke-width="3"/>
+<!-- stage wash -->
+<ellipse cx="600" cy="600" rx="550" ry="260" fill="url(#spot)"/>
+<!-- audience silhouettes -->
+<path d="M0 480q140-46 260 7 130-58 270 2 150-59 285 1 145-53 385 2v408H0Z" fill="#12112f" opacity=".84"/>
+<!-- ring -->
+<ellipse cx="600" cy="642" rx="425" ry="185" fill="url(#floor)" stroke="#fff2a5" stroke-width="10"/>
+<ellipse cx="600" cy="642" rx="387" ry="155" fill="none" stroke="#e74791" stroke-width="13" stroke-dasharray="28 18"/>
+<ellipse cx="600" cy="642" rx="326" ry="118" fill="none" stroke="#fff" stroke-width="4" opacity=".7"/>
+<!-- colored spotlights -->
+<path d="M70 300L395 575 254 590Z" fill="#20e7ed" opacity=".16"/><path d="M1130 300L808 578 947 591Z" fill="#ff42ab" opacity=".18"/>
+<!-- performers arranged around a circle -->
+<g transform="translate(600 490) scale(.82)"><use href="#performer"/></g>
+<g transform="translate(770 516) rotate(32) scale(.86)"><use href="#performer"/></g>
+<g transform="translate(882 604) rotate(68) scale(.83)"><use href="#performer"/></g>
+<g transform="translate(840 721) rotate(112) scale(.84)"><use href="#performer"/></g>
+<g transform="translate(704 780) rotate(150) scale(.8)"><use href="#performer"/></g>
+<g transform="translate(500 782) rotate(205) scale(.88)"><use href="#performer"/></g>
+<g transform="translate(354 715) rotate(246) scale(.82)"><use href="#performer"/></g>
+<g transform="translate(318 594) rotate(288) scale(.87)"><use href="#performer"/></g>
+<g transform="translate(430 510) rotate(326) scale(.78)"><use href="#performer"/></g>
+<!-- juggling stars and floating confetti -->
+<g fill="#fff45e" stroke="#f24b9e" stroke-width="3"><path d="M603 524l7 16 17 2-13 11 4 17-15-9-15 9 4-17-13-11 17-2z"/><path d="M516 590l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z"/><path d="M704 591l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z"/></g>
+<g fill="#ffda47"><circle cx="355" cy="485" r="7"/><circle cx="932" cy="520" r="6"/><circle cx="292" cy="660" r="8"/><circle cx="955" cy="700" r="8"/><circle cx="490" cy="450" r="5"/><circle cx="743" cy="469" r="6"/></g>
+<g fill="#28e4db"><path d="M250 540l11 9-11 9-11-9z"/><path d="M950 570l10 9-10 9-10-9z"/><path d="M408 800l10 9-10 9-10-9z"/></g>
+<!-- title ribbon -->
+<path d="M275 835Q600 790 925 835L903 890Q600 857 297 890Z" fill="#f53d98" stroke="#ffe567" stroke-width="5"/>
+<text x="600" y="867" text-anchor="middle" font-family="Georgia,serif" font-size="34" font-weight="bold" letter-spacing="5" fill="#fff8c9">CIRCUS OF COLOR</text>
+</svg>
+<div class="confetti" id="confetti" aria-hidden="true"></div></section><nav class="controls" aria-label="Circus controls"><button id="lights" type="button" aria-pressed="true">✨ Lights on</button><button id="dance" type="button" aria-pressed="true">⏸ Pause dance</button><button id="toss" type="button">🎉 Toss confetti</button></nav><p class="status" id="status" aria-live="polite">The show is glowing. Tap a button to join in!</p></main>
+<script>
+const stage=document.querySelector('#stage'),status=document.querySelector('#status');
+document.querySelector('#lights').addEventListener('click',e=>{const on=stage.classList.toggle('lights-off')===false;e.currentTarget.setAttribute('aria-pressed',String(on));e.currentTarget.textContent=on?'✨ Lights on':'💡 Lights off';status.textContent=on?'The big top lights are shining!':'The lights are dimmed.'});
+document.querySelector('#dance').addEventListener('click',e=>{const paused=stage.classList.toggle('paused');e.currentTarget.setAttribute('aria-pressed',String(!paused));e.currentTarget.textContent=paused?'💃 Start dance':'⏸ Pause dance';status.textContent=paused?'The performers are taking a bow.':'The performers are dancing again!'});
+document.querySelector('#toss').addEventListener('click',()=>{const tray=document.querySelector('#confetti'),colors=['#ff55a7','#ffe45d','#35e3dc','#9e78ff','#fff7d5'];for(let i=0;i<90;i++){const p=document.createElement('i');p.className='piece';p.style.setProperty('--left',Math.random()*100+'%');p.style.setProperty('--drift',(Math.random()*240-120)+'px');p.style.setProperty('--duration',(2+Math.random()*2.3)+'s');p.style.setProperty('--color',colors[i%colors.length]);tray.appendChild(p);p.addEventListener('animationend',()=>p.remove(),{once:true})}status.textContent='A shower of confetti! Encore!'});
+</script></body></html>
